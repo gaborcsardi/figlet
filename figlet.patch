@@ -1,0 +1,59 @@
+diff --git a/community/figlet/APKBUILD b/community/figlet/APKBUILD
+index e1e31a52..146de51a 100644
+--- a/community/figlet/APKBUILD
++++ b/community/figlet/APKBUILD
+@@ -6,14 +6,15 @@ pkgrel=3
+ pkgdesc="Program for making large letters out of ordinary text"
+ url="http://www.figlet.org/"
+ arch="all"
++options="!fhs"
+ license="BSD-3-Clause"
+-subpackages="$pkgname-doc"
+ source="ftp://ftp.figlet.org/pub/figlet/program/unix/figlet-$pkgver.tar.gz
+ 	musl-fix-cplusplus-decls.patch
++	static.patch
+ 	"
+ 
+ build() {
+-	make DEFAULTFONTDIR=/usr/share/figlet/fonts all
++	make DEFAULTFONTDIR=/usr/local/share/figlet/fonts all
+ }
+ 
+ check() {
+@@ -21,9 +22,11 @@ check() {
+ }
+ 
+ package() {
+-	make DESTDIR="$pkgdir" BINDIR=/usr/bin MANDIR=/usr/share/man \
+-	DEFAULTFONTDIR=/usr/share/figlet/fonts install
++	make DESTDIR="$pkgdir" BINDIR=/usr/local/bin MANDIR=/usr/local/share/man \
++	DEFAULTFONTDIR=/usr/local/share/figlet/fonts install
+ }
+ 
+ sha512sums="bb9610fd89a51dd3e65c485653fe1292f47dbca7cb9a05af4ce317f5d776bb346ae455aec07fc37c290f6658639920fd7c431c1135a0f4d456a21c0bd25f99fb  figlet-2.2.5.tar.gz
+-4ac1788686ff89c27747fe10b43de90f43c2aaa40476610cf5af52ff43c00e180b91acc1646658330fd534d223cef4643ab3c7f7bf0f6c9b5861601b1d8a05fe  musl-fix-cplusplus-decls.patch"
++4ac1788686ff89c27747fe10b43de90f43c2aaa40476610cf5af52ff43c00e180b91acc1646658330fd534d223cef4643ab3c7f7bf0f6c9b5861601b1d8a05fe  musl-fix-cplusplus-decls.patch
++e6b4b1a9b8733a8b685e301ce2e6b3f9f438a75963ea483652e186512edb7cbd178b4b0b7f9a8bdd17198d82fb7cf6dffaba7deeba61ef1640580f61c473345b  static.patch
++"
+diff --git a/community/figlet/static.patch b/community/figlet/static.patch
+new file mode 100644
+index 00000000..415a88e7
+--- /dev/null
++++ b/community/figlet/static.patch
+@@ -0,0 +1,16 @@
++diff --git a/Makefile b/Makefile
++index 5a51d51..f25a4a5 100644
++--- a/Makefile
+++++ b/Makefile
++@@ -20,9 +20,9 @@ SHELL = /bin/sh
++ 
++ # The C compiler and linker to use
++ CC	= gcc
++-CFLAGS	= -g -O2 -Wall
+++CFLAGS	= -g -O2 -Wall -static
++ LD	= gcc
++-LDFLAGS =
+++LDFLAGS = -static-libgcc -static
++ 
++ # Feature flags:
++ #   define TLF_FONTS to use TOIlet TLF fonts
