@@ -33,7 +33,7 @@ RUN --mount=type=secret,id=ABUILD_KEY,uid=1000 \
     abuild -r
 
 USER root
-RUN apk add /home/gaborcsardi/packages/community/$(arch)/figlet*.apk
+RUN apk add /home/gaborcsardi/packages/community/*/figlet*.apk
 RUN cd /usr/local/bin && rm -f chkfont showfigfonts figlist
 
 RUN echo '#! /bin/sh' > /usr/local/bin/----- && \
