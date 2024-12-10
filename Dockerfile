@@ -36,9 +36,12 @@ USER root
 RUN apk add /home/gaborcsardi/packages/community/$(arch)/figlet*.apk
 RUN cd /usr/local/bin && rm -f chkfont showfigfonts figlist
 
-RUN echo 'figlet -f mini -- --------------------------------' \
-    > /usr/local/bin/----- && \
-    ln -s figlet /usr/local/bin/--
+RUN echo '#! /bin/sh' > /usr/local/bin/----- && \
+    echo 'figlet -f mini -- --------------------------------' \
+      >> /usr/local/bin/----- && \
+    chmod +x /usr/local/bin/----- && \
+    ln -s figlet /usr/local/bin/-- && \
+    ln -s figlet /usr/local/bin/:::
 
 CMD [ "sh", "-c", "cp -r /home/gaborcsardi/packages/community/* /output/" ]
 

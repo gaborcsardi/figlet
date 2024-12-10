@@ -8,4 +8,3 @@ done
 
 docker buildx build --platform="$platforms" --push \
        --target=figlet -t ghcr.io/gaborcsardi/figlet .
-
