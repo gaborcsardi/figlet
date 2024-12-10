@@ -58,6 +58,18 @@ will produce the output:
 #8 DONE 0.3s
 ```
 
+#### Shortcuts
+
+`--` (two dashes) and `:::` are aliases (symbolic links) to `figlet`, so
+you can write nice headings. `-----` (five dashes) produces a long
+horizontal line, you can use this to mark the end of blocks:
+
+```sh
+-- This is a heading # --------------------------------
+...
+----- # -----------------------------------------------
+```
+
 ### Alpine Linux
 
 Install my public key, and install the figlet package from my repo:
@@ -84,19 +96,6 @@ or use `curl`:
 URL="https://github.com/gaborcsardi/figlet/releases/download/2.2.5-r3/figlet-2.2.5-r3-aarch64.apk"
 curl -Ls "$URL" | tar xz -C /
 ```
-
-## Shortcuts
-
-`--` (two dashes) and `:::` are aliases (symbolic links) to `figlet`, so
-in scripts you can write nice headings. `-----` (five dashes) produces a
-long horizontal line, you can use this to mark the end of blocks:
-
-```sh
--- This is a heading # --------------------------------
-...
------ # -----------------------------------------------
-```
-
 ## License
 
 BSD-3-Clause (C) 1991-2012 Glenn Chappell, Ian Chai, John Cowan,
