@@ -1,0 +1,17 @@
+name: 'figlet'
+description: ASCII banners
+inputs:
+  text:
+    description: |
+      Text to print.
+  font:
+    description: |
+      Figlet font name.
+    default: standard
+runs:
+  using: docker
+  image: docker://ghcr.io/gaborcsardi/figlet:latest
+  args:
+    - "-f"
+    - ${{ inputs.font }}
+    - ${{ inputs.text }}

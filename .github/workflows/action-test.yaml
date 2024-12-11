@@ -1,0 +1,19 @@
+name: action-test.yaml
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-deptch: 1
+    - uses: ./
+      with:
+        text: "Hello world!"
+    - uses: ./
+      with:
+        text: "Custom font"
+        font: mini
