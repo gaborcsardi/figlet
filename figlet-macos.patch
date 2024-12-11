@@ -1,0 +1,30 @@
+diff --git a/Makefile b/Makefile
+index 5a51d51..d8affb8 100644
+--- a/Makefile
++++ b/Makefile
+@@ -19,9 +19,9 @@
+ SHELL = /bin/sh
+ 
+ # The C compiler and linker to use
+-CC	= gcc
+-CFLAGS	= -g -O2 -Wall
+-LD	= gcc
++CC	= gcc -arch $(ARCH)
++CFLAGS	= -g -O2 -Wno-deprecated-non-prototype -std=c99
++LD	= gcc -arch $(ARCH)
+ LDFLAGS =
+ 
+ # Feature flags:
+diff --git a/figlet.c b/figlet.c
+index 3de795a..1eaba99 100644
+--- a/figlet.c
++++ b/figlet.c
+@@ -66,7 +66,7 @@
+ #include <sys/stat.h>
+ #include <fcntl.h>     /* Needed for get_columns */
+ 
+-#ifdef unix
++#if defined(unix) || defined(__APPLE__)
+ #include <unistd.h>
+ #include <sys/ioctl.h> /* Needed for get_columns */
+ #endif

@@ -14,6 +14,7 @@
 * Less than 200kB.
 * Use as a Docker stage.
 * Use as a GitHub action.
+* Universal binary for x86_64 and arm64 macOS.
 * Static binary for any Alpine Linux version from an Alpine repo.
 * Static binary for any Linux, download and uncompress manually.
 * Supported platforms: `amd64` (`x86_64`), `arm64` (`aarch64`), `s390x`,
@@ -91,6 +92,14 @@ steps:
   with:
     text: "Hello world!"
     font: slant
+```
+
+### macOS
+
+Download and uncompress the universal binary:
+```sh
+URL="https://github.com/gaborcsardi/figlet/releases/download/2.2.5-r3/figlet-macos-2.2.5-r3.tar.gz"
+curl -Ls "$URL" | sudo tar xmoz -C /
 ```
 
 ### Alpine Linux
