@@ -13,6 +13,7 @@
 
 * Less than 200kB.
 * Use as a Docker stage.
+* Use as a GitHub action.
 * Static binary for any Alpine Linux version from an Alpine repo.
 * Static binary for any Linux, download and uncompress manually.
 * Supported platforms: `amd64` (`x86_64`), `arm64` (`aarch64`), `s390x`,
@@ -68,6 +69,28 @@ horizontal line, you can use this to mark the end of blocks:
 -- This is a heading # --------------------------------
 ...
 ----- # -----------------------------------------------
+```
+
+### GitHub Action
+
+You can use the Docker image as a container action on GitHub Actions.
+For example:
+
+```yaml
+steps:
+- uses: gaborcsardi/figlet@v2
+  with:
+    text: "Hello world!"
+```
+
+To change the font, use the `font` input parameter:
+
+```yaml
+steps:
+- uses: gaborcsardi/figlet@v2
+  with:
+    text: "Hello world!"
+    font: slant
 ```
 
 ### Alpine Linux
